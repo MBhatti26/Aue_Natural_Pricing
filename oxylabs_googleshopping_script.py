@@ -3,10 +3,14 @@ import pandas as pd
 from datetime import datetime
 import time
 import json
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # Your credentials
-USERNAME = 'mahnoorbhatti_6JRvx'
-PASSWORD = 'Auenatural=2025'
+USERNAME = os.getenv('OXYLABS_USERNAME')
+PASSWORD = os.getenv('OXYLABS_PASSWORD')
 
 # Your search queries
 queries = [
