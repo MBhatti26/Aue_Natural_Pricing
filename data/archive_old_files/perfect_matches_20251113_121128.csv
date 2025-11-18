@@ -1,0 +1,91 @@
+product_1_id,product_1_name,product_2_id,product_2_name,similarity,name_similarity,brand_similarity,size_similarity
+PRDe42b3890,Faith in Nature - Shampoo Bar Lavender & Geranium,PRDc40d85f0,Faith In Nature Shampoo Bar Lavender & Geranium 85gm,100.0,100.0,100.0,100
+PRD64e43e15,"Nature Triangle Shampoo Bar - Natural Usman Grass Glutinous Rice Water Solid Shampoo Bar For Hair Care & Hair Growth, Calming & Strengthens Hairs For",PRD89df39f4,"Nature Triangle Shampoo Bar, Natural Grass Glutinous Rice Water Solid Shampoo Bar for Hair Care & Hair Growth, Calming & Strengthens Hair, Gentle on",91.9,94.32624113475178,100.0,50
+PRDbb642fb8,Shampoo Bar – Calendula – Fine Hair - Full Size,PRD94df6e4e,Shampoo Bar,95.0,100.0,100.0,50
+PRDf41382a6,Shampoo Bar - Lime & Coconut - All Hair Types - Full Size,PRD94df6e4e,Shampoo Bar,95.0,100.0,100.0,50
+PRD89df39f4,"Nature Triangle Shampoo Bar, Natural Grass Glutinous Rice Water Solid Shampoo Bar for Hair Care & Hair Growth, Calming & Strengthens Hair, Gentle on",PRD64e43e15,"Nature Triangle Shampoo Bar - Natural Usman Grass Glutinous Rice Water Solid Shampoo Bar For Hair Care & Hair Growth, Calming & Strengthens Hairs For",91.9,94.32624113475178,100.0,50
+PRDc40d85f0,Faith In Nature Shampoo Bar Lavender & Geranium 85gm,PRDe42b3890,Faith in Nature - Shampoo Bar Lavender & Geranium,100.0,100.0,100.0,100
+PRDc561cff4,Shampoo Bar with Rosemary – Solid Shampoo and Conditioner Bar for Men & Women – Deep Cleansing Hair Soap with Coconut Oil Extracts for Scalp Care,PRD94df6e4e,Shampoo Bar,95.0,100.0,100.0,50
+PRDf2daad50,"2025 Nature Triangle Shampoo Bar, Nature Seven Green Soap Shampoo, Natural Usman Grass Shampoo Bar, Calming & Strengthens Hair for Women and Men",PRDd8d93ae9,"1-3x Nature Triangle Shampoo Bar, Nature Seven Green Soap Shampoo, Natural Usman Grass Shampoo Bar, Calming & Strengthens Hair for Women and Men",99.2,98.54014598540147,100.0,100
+PRDd8d93ae9,"1-3x Nature Triangle Shampoo Bar, Nature Seven Green Soap Shampoo, Natural Usman Grass Shampoo Bar, Calming & Strengthens Hair for Women and Men",PRDf2daad50,"2025 Nature Triangle Shampoo Bar, Nature Seven Green Soap Shampoo, Natural Usman Grass Shampoo Bar, Calming & Strengthens Hair for Women and Men",99.2,98.54014598540147,100.0,100
+PRD63cbaf21,"Shampoo Bar Castor Oil,Castor Oil Conditioner Bar,Solid Bars Shampoo for Hydration,Strengthening,Nourishing Bars Soap for Hair Growth,Organic Castor",PRD94df6e4e,Shampoo Bar,95.0,100.0,100.0,50
+PRDef469070,"Cacumen Biotae Isatis Indicotica Shampoo Bar, Usman Shampoo Bar Grass",PRDda45072e,"Cacumen Biotae Isatis Indicotica Shampoo Bar, Usman Shampoo Grass Bar",93.3,96.96969696969697,100.0,50
+PRD94df6e4e,Shampoo Bar,PRDbb642fb8,Shampoo Bar – Calendula – Fine Hair - Full Size,95.0,100.0,100.0,50
+PRD94df6e4e,Shampoo Bar,PRDf41382a6,Shampoo Bar - Lime & Coconut - All Hair Types - Full Size,95.0,100.0,100.0,50
+PRD94df6e4e,Shampoo Bar,PRDc561cff4,Shampoo Bar with Rosemary – Solid Shampoo and Conditioner Bar for Men & Women – Deep Cleansing Hair Soap with Coconut Oil Extracts for Scalp Care,95.0,100.0,100.0,50
+PRD94df6e4e,Shampoo Bar,PRD63cbaf21,"Shampoo Bar Castor Oil,Castor Oil Conditioner Bar,Solid Bars Shampoo for Hydration,Strengthening,Nourishing Bars Soap for Hair Growth,Organic Castor",95.0,100.0,100.0,50
+PRD94df6e4e,Shampoo Bar,PRD07b36331,Shampoo Bar Cantankerous Curls,95.0,100.0,100.0,50
+PRD07b36331,Shampoo Bar Cantankerous Curls,PRD94df6e4e,Shampoo Bar,95.0,100.0,100.0,50
+PRD9ad672c9,Rosemary Shampoo Bar,PRD1a3b4dcc,"Rosemary Shampoo Bar, Shampoo Bar with Rosemary & Coconut Oil, Nourish & Moisturize Hair, Solid Soap Easy for Travel",95.0,100.0,100.0,50
+PRDda45072e,"Cacumen Biotae Isatis Indicotica Shampoo Bar, Usman Shampoo Grass Bar",PRDef469070,"Cacumen Biotae Isatis Indicotica Shampoo Bar, Usman Shampoo Bar Grass",93.3,96.96969696969697,100.0,50
+PRD1a3b4dcc,"Rosemary Shampoo Bar, Shampoo Bar with Rosemary & Coconut Oil, Nourish & Moisturize Hair, Solid Soap Easy for Travel",PRD9ad672c9,Rosemary Shampoo Bar,95.0,100.0,100.0,50
+PRDcd1840e0,Friendly Soap Conditioner Bar Fragrance Free,PRDa1991032,Friendly Soap Conditioner Bar - Fragrance-free,95.0,100.0,100.0,50
+PRDcdd158d6,Friendly Soap Conditioner Bar Lavender & Geranium,PRD28257c33,Friendly Soap Conditioner Bar - Lavender & Tea Tree,90.7,92.13483146067416,100.0,50
+PRDff2e9b24,Ethique Wonderbar Conditioner Bar for Oily-Normal Hair-Mini,PRDc18dacd6,Ethique Wonderbar Conditioner Bar For Oily to Normal Hair,93.5,97.2972972972973,100.0,50
+PRD22c33c78,Conditioner Bars,PRD683e5c3e,Conditioner Bars - Lemon,95.0,100.0,100.0,50
+PRDc18dacd6,Ethique Wonderbar Conditioner Bar For Oily to Normal Hair,PRDff2e9b24,Ethique Wonderbar Conditioner Bar for Oily-Normal Hair-Mini,93.5,97.2972972972973,100.0,50
+PRDa43053ee,Bain & Savon Natural Conditioner Bar,PRDbb255664,Bain & Savon Natural Conditioner Bar Brittle Heat Damaged Hair,95.0,100.0,100.0,50
+PRD9d164e19,The Soap Mine Solid Conditioner Bar,PRD949949da,The Soap Mine Solid Conditioner Bar - Fragrance Free,95.0,100.0,100.0,50
+PRD9d164e19,The Soap Mine Solid Conditioner Bar,PRD253e76e4,The Soap Mine Solid Conditioner Bar - Lavender & Orange,95.0,100.0,100.0,50
+PRD5c42e109,Coconut Conditioner Bar,PRD1f1b0352,"Coconut Conditioner Bar - Rich Nourishing & Volumizing - Hair Moisturizing & Strengthening Solid Soap Bar, Plastic-Free, Silicone & Sulfate Free",95.0,100.0,100.0,50
+PRD272cfb82,Lemon Solid Conditioner Bar,PRDa1005f77,Lemon Solid Conditioner - Hair & Bee Solid Conditioner Bar Conditioner bar in tin,91.9,94.33962264150944,100.0,50
+PRDbb255664,Bain & Savon Natural Conditioner Bar Brittle Heat Damaged Hair,PRDa43053ee,Bain & Savon Natural Conditioner Bar,95.0,100.0,100.0,50
+PRD683e5c3e,Conditioner Bars - Lemon,PRD22c33c78,Conditioner Bars,95.0,100.0,100.0,50
+PRDa1991032,Friendly Soap Conditioner Bar - Fragrance-free,PRDcd1840e0,Friendly Soap Conditioner Bar Fragrance Free,95.0,100.0,100.0,50
+PRDa1991032,Friendly Soap Conditioner Bar - Fragrance-free,PRD28257c33,Friendly Soap Conditioner Bar - Lavender & Tea Tree,90.6,82.92682926829268,100.0,100
+PRD23f263da,Natural Hair Conditioning Bar – Bergamot,PRDceb86729,Natural Hair Conditioning Bar – Lemongrass,90.4,91.66666666666666,100.0,50
+PRD949949da,The Soap Mine Solid Conditioner Bar - Fragrance Free,PRD9d164e19,The Soap Mine Solid Conditioner Bar,95.0,100.0,100.0,50
+PRD253e76e4,The Soap Mine Solid Conditioner Bar - Lavender & Orange,PRD9d164e19,The Soap Mine Solid Conditioner Bar,95.0,100.0,100.0,50
+PRD28257c33,Friendly Soap Conditioner Bar - Lavender & Tea Tree,PRDcdd158d6,Friendly Soap Conditioner Bar Lavender & Geranium,90.7,92.13483146067416,100.0,50
+PRD28257c33,Friendly Soap Conditioner Bar - Lavender & Tea Tree,PRDa1991032,Friendly Soap Conditioner Bar - Fragrance-free,90.6,82.92682926829268,100.0,100
+PRD591db5d1,Natural Conditioner Bar,PRD898379d1,Natural Conditioner Bar with Pink Clay & Grapefruit,95.0,100.0,100.0,50
+PRD2c4133ca,alott - nourishing conditioner bar,PRDca4b0565,alott - nourishing conditioner bar | Glow Organic,95.0,100.0,100.0,50
+PRDca4b0565,alott - nourishing conditioner bar | Glow Organic,PRD2c4133ca,alott - nourishing conditioner bar,95.0,100.0,100.0,50
+PRD0e1b0d18,Unscented Conditioner Solid Bar,PRDe76a14df,Unscented Conditioner Bars,91.6,93.87755102040816,100.0,50
+PRD898379d1,Natural Conditioner Bar with Pink Clay & Grapefruit,PRD591db5d1,Natural Conditioner Bar,95.0,100.0,100.0,50
+PRDe76a14df,Unscented Conditioner Bars,PRD0e1b0d18,Unscented Conditioner Solid Bar,91.6,93.87755102040816,100.0,50
+PRD1f1b0352,"Coconut Conditioner Bar - Rich Nourishing & Volumizing - Hair Moisturizing & Strengthening Solid Soap Bar, Plastic-Free, Silicone & Sulfate Free",PRD5c42e109,Coconut Conditioner Bar,95.0,100.0,100.0,50
+PRDa1005f77,Lemon Solid Conditioner - Hair & Bee Solid Conditioner Bar Conditioner bar in tin,PRD272cfb82,Lemon Solid Conditioner Bar,91.9,94.33962264150944,100.0,50
+PRDe408fb7b,Coconut Curls Conditioning Shampoo Bar Trial Size,PRD6ac91761,Coconut Curls Conditioning Shampoo Bar,95.0,100.0,100.0,50
+PRD6ac91761,Coconut Curls Conditioning Shampoo Bar,PRDe408fb7b,Coconut Curls Conditioning Shampoo Bar Trial Size,95.0,100.0,100.0,50
+PRDceb86729,Natural Hair Conditioning Bar – Lemongrass,PRD23f263da,Natural Hair Conditioning Bar – Bergamot,90.4,91.66666666666666,100.0,50
+PRDceb86729,Natural Hair Conditioning Bar – Lemongrass,PRDca5f4122,Natural Hair Conditioning Bar – Lavender,90.3,91.42857142857143,100.0,50
+PRDca5f4122,Natural Hair Conditioning Bar – Lavender,PRDceb86729,Natural Hair Conditioning Bar – Lemongrass,90.3,91.42857142857143,100.0,50
+PRDce9b3f2d,The Ordinary Niacinamide 10% + Zinc 1%,PRDe4a46626,The Ordinary Niacinamide 10% + Zinc 1% Face Serum,95.0,100.0,100.0,50
+PRD51a95166,Plant Therapy Facial Serum,PRDb976da70,Plant Therapy Facial Serum Trio Set,95.0,100.0,100.0,50
+PRD8dad10bb,Geek & Gorgeous 101 HA 5 Light Serum,PRD05f3959d,Geek & Gorgeous 101 HA 5 Rich Serum,90.0,90.9090909090909,100.0,50
+PRDb976da70,Plant Therapy Facial Serum Trio Set,PRD51a95166,Plant Therapy Facial Serum,95.0,100.0,100.0,50
+PRD05f3959d,Geek & Gorgeous 101 HA 5 Rich Serum,PRD8dad10bb,Geek & Gorgeous 101 HA 5 Light Serum,90.0,90.9090909090909,100.0,50
+PRDe4a46626,The Ordinary Niacinamide 10% + Zinc 1% Face Serum,PRDce9b3f2d,The Ordinary Niacinamide 10% + Zinc 1%,95.0,100.0,100.0,50
+PRD0ac1e5bb,Tree Hut Whipped Body Butter Vanilla,PRD3e158b60,Tree Hut Whipped Body Butter,95.0,100.0,100.0,50
+PRDab6f59b8,Palmer's Cocoa Butter Formula,PRD07b14a1b,Palmer's Cocoa Butter Formula Body Lotion,95.0,100.0,100.0,50
+PRDab6f59b8,Palmer's Cocoa Butter Formula,PRD30f1d99b,Palmer's Cocoa Butter Formula Tummy Butter For Stretch Marks,95.0,100.0,100.0,50
+PRDab6f59b8,Palmer's Cocoa Butter Formula,PRD8ddeb742,Palmer's Cocoa Butter Formula Lotion,95.0,100.0,100.0,50
+PRD07b14a1b,Palmer's Cocoa Butter Formula Body Lotion,PRDab6f59b8,Palmer's Cocoa Butter Formula,95.0,100.0,100.0,50
+PRD07b14a1b,Palmer's Cocoa Butter Formula Body Lotion,PRD8ddeb742,Palmer's Cocoa Butter Formula Lotion,90.1,91.17647058823529,100.0,50
+PRD88f67225,Organic Shop Nurturing Body Cream Blueberry & Blackberry,PRD13d1af7c,Organic Shop Nurturing Body Cream Blueberry&Blackberry,95.0,100.0,100.0,50
+PRD3e158b60,Tree Hut Whipped Body Butter,PRD0ac1e5bb,Tree Hut Whipped Body Butter Vanilla,95.0,100.0,100.0,50
+PRDeff54c48,Soap and Glory The Righteous Body Butter,PRDa2063a8c,Soap & And Glory The Righteous Body Butter,95.0,100.0,100.0,50
+PRDa007b882,Mango Butter Refined,PRD337887dc,Mango Butter Refined / Resealable Pouch,95.0,100.0,100.0,50
+PRDa007b882,Mango Butter Refined,PRDad74e0eb,Mango Butter,95.0,100.0,100.0,50
+PRDfbf2977a,Shea Butter Refined,PRD8a71614b,Shea Butter – Refined Resealable Pouch,95.0,100.0,100.0,50
+PRD09d04044,Bronnley Eclectic Elements Body Butter,PRD6f3fe59b,Bronnley Eclectic Elements Zealous Flower Body Butter,91.0,83.5820895522388,100.0,100
+PRDdc65729d,Body Butter with Mango Butter – Lime,PRDf1b0c5d0,Body Butter with Mango Butter – Patchouli and Orange,91.6,93.75,100.0,50
+PRD6f3fe59b,Bronnley Eclectic Elements Zealous Flower Body Butter,PRD09d04044,Bronnley Eclectic Elements Body Butter,91.0,83.5820895522388,100.0,100
+PRD6d6aa7db,Whipped Body Butter,PRD17be8583,"Whipped Body Butters by So Sona Skincare - Made for Dry/Sensitive Skin, Vegan-Friendly",95.0,100.0,100.0,50
+PRD337887dc,Mango Butter Refined / Resealable Pouch,PRDa007b882,Mango Butter Refined,95.0,100.0,100.0,50
+PRD337887dc,Mango Butter Refined / Resealable Pouch,PRDad74e0eb,Mango Butter,95.0,100.0,100.0,50
+PRD17be8583,"Whipped Body Butters by So Sona Skincare - Made for Dry/Sensitive Skin, Vegan-Friendly",PRD6d6aa7db,Whipped Body Butter,95.0,100.0,100.0,50
+PRD30f1d99b,Palmer's Cocoa Butter Formula Tummy Butter For Stretch Marks,PRDab6f59b8,Palmer's Cocoa Butter Formula,95.0,100.0,100.0,50
+PRD30f1d99b,Palmer's Cocoa Butter Formula Tummy Butter For Stretch Marks,PRD8ddeb742,Palmer's Cocoa Butter Formula Lotion,90.9,92.53731343283582,100.0,50
+PRD13d1af7c,Organic Shop Nurturing Body Cream Blueberry&Blackberry,PRD88f67225,Organic Shop Nurturing Body Cream Blueberry & Blackberry,95.0,100.0,100.0,50
+PRD9121603a,Josie Maran Whipped Argan Oil Body Butter Apricot And Magnolia 4.6 Fl,PRD5748515a,Josie Maran Whipped Argan Oil Body Butter Vanilla Apricot,90.8,92.45283018867924,100.0,50
+PRD8ddeb742,Palmer's Cocoa Butter Formula Lotion,PRDab6f59b8,Palmer's Cocoa Butter Formula,95.0,100.0,100.0,50
+PRD8ddeb742,Palmer's Cocoa Butter Formula Lotion,PRD07b14a1b,Palmer's Cocoa Butter Formula Body Lotion,90.1,91.17647058823529,100.0,50
+PRD8ddeb742,Palmer's Cocoa Butter Formula Lotion,PRD30f1d99b,Palmer's Cocoa Butter Formula Tummy Butter For Stretch Marks,90.9,92.53731343283582,100.0,50
+PRDad74e0eb,Mango Butter,PRDa007b882,Mango Butter Refined,95.0,100.0,100.0,50
+PRDad74e0eb,Mango Butter,PRD337887dc,Mango Butter Refined / Resealable Pouch,95.0,100.0,100.0,50
+PRDa2063a8c,Soap & And Glory The Righteous Body Butter,PRDeff54c48,Soap and Glory The Righteous Body Butter,95.0,100.0,100.0,50
+PRDf1b0c5d0,Body Butter with Mango Butter – Patchouli and Orange,PRDdc65729d,Body Butter with Mango Butter – Lime,91.6,93.75,100.0,50
+PRD8a71614b,Shea Butter – Refined Resealable Pouch,PRDfbf2977a,Shea Butter Refined,95.0,100.0,100.0,50
+PRD5748515a,Josie Maran Whipped Argan Oil Body Butter Vanilla Apricot,PRD9121603a,Josie Maran Whipped Argan Oil Body Butter Apricot And Magnolia 4.6 Fl,90.8,92.45283018867924,100.0,50

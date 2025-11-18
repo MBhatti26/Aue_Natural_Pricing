@@ -1,0 +1,23 @@
+{
+  "timestamp": "20251118_154137",
+  "engine_version": "enhanced_with_embeddings",
+  "embedding_model": "all-MiniLM-L6-v2",
+  "lexical_weight": 0.6,
+  "semantic_weight": 0.4,
+  "total_products": 888,
+  "matched_pairs": 740,
+  "matched_products": 389,
+  "unmatched_products": 499,
+  "coverage_pct": 43.8,
+  "perfect_pairs": 304,
+  "similar_pairs": 436,
+  "threshold_min": 65,
+  "threshold_perfect": 88,
+  "semantic_stats": {
+    "avg_semantic_similarity": 75.26647297297298,
+    "avg_lexical_similarity": 67.11402702702702,
+    "avg_hybrid_similarity": 70.3750945945946,
+    "semantic_high_matches": 264,
+    "lexical_high_matches": 134
+  }
+}

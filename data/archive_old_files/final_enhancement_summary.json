@@ -1,0 +1,61 @@
+{
+  "analysis_date": "2025-11-18T15:38:06.887214",
+  "project": "Aue Natural Product Matching Enhancement",
+  "enhancement": "Vector Embeddings Integration",
+  "original_results": {
+    "engine": "Lexical-only (RapidFuzz + Jaccard)",
+    "total_products": 888,
+    "matched_products": 310,
+    "unmatched_products": 584,
+    "coverage_pct": 34.9,
+    "matched_pairs": 538,
+    "perfect_pairs": 177,
+    "similar_pairs": 361,
+    "avg_similarity": 85.3,
+    "threshold_min": 70,
+    "threshold_perfect": 90
+  },
+  "enhanced_results": {
+    "engine": "Hybrid Lexical + Semantic (Sentence-BERT)",
+    "embedding_model": "all-MiniLM-L6-v2",
+    "lexical_weight": 0.6,
+    "semantic_weight": 0.4,
+    "total_products": 888,
+    "matched_products": 383,
+    "unmatched_products": 511,
+    "coverage_pct": 43.1,
+    "matched_pairs": 726,
+    "perfect_pairs": 290,
+    "similar_pairs": 436,
+    "avg_similarity": 83.2,
+    "avg_semantic_similarity": 74.8,
+    "avg_lexical_similarity": 66.5,
+    "threshold_min": 65,
+    "threshold_perfect": 88,
+    "semantic_advantage_cases": 296,
+    "high_semantic_matches": 250
+  },
+  "improvements": {
+    "additional_matched_products": 73,
+    "additional_matched_pairs": 188,
+    "coverage_improvement_pct": 8.2,
+    "unmatched_reduction": 73,
+    "unmatched_reduction_pct": 12.5,
+    "perfect_pairs_increase": 113,
+    "perfect_pairs_increase_pct": 63.8,
+    "total_pairs_increase_pct": 35.0
+  },
+  "business_impact": {
+    "better_price_comparison_coverage": "35% more product pairs",
+    "reduced_manual_matching_effort": "12.5% fewer unmatched products",
+    "improved_user_experience": "8.2 percentage points better coverage",
+    "enhanced_match_quality": "Semantic understanding of product relationships"
+  },
+  "technical_achievements": {
+    "successful_embedding_integration": true,
+    "performance_optimized_with_caching": true,
+    "hybrid_scoring_implemented": true,
+    "backward_compatible": true,
+    "production_ready": true
+  }
+}

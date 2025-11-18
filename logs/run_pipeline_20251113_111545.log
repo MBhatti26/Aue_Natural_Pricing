@@ -1,0 +1,38 @@
+=====================================================
+     Starting Auê Natural Full Pipeline Run
+=====================================================
+[1/6] Poetry detected.
+[2/6] Installing dependencies...
+The currently activated Python version 3.14.0 is not supported by the project (>=3.9,<3.13).
+Trying to find and use a compatible version. 
+Using python3.12 (3.12.11)
+Creating virtualenv aue-natural-pricing-PJt3P-39-py3.12 in /Users/mahnoorbhatti/Library/Caches/pypoetry/virtualenvs
+Updating dependencies
+Resolving dependencies...
+
+The current project's supported Python range (>=3.9,<3.11) is not compatible with some of the required packages Python requirement:
+  - numpy requires Python >=3.11, so it will not be installable for Python >=3.9,<3.11
+  - numpy requires Python >=3.11, so it will not be installable for Python >=3.9,<3.11
+  - numpy requires Python >=3.11, so it will not be installable for Python >=3.9,<3.11
+  - numpy requires Python >=3.11, so it will not be installable for Python >=3.9,<3.11
+  - numpy requires Python >=3.11, so it will not be installable for Python >=3.9,<3.11
+
+Because no versions of numpy match >2.3.0,<2.3.1 || >2.3.1,<2.3.2 || >2.3.2,<2.3.3 || >2.3.3,<2.3.4 || >2.3.4
+ and numpy (2.3.0) requires Python >=3.11, numpy is forbidden.
+And because numpy (2.3.1) requires Python >=3.11, numpy is forbidden.
+And because numpy (2.3.2) requires Python >=3.11
+ and numpy (2.3.3) requires Python >=3.11, numpy is forbidden.
+So, because numpy (2.3.4) requires Python >=3.11
+ and aue-natural-pricing depends on numpy (>=2.3.0), version solving failed.
+
+  * Check your dependencies Python requirement: The Python requirement can be specified via the `python` or `markers` properties
+
+    For numpy, a possible solution would be to set the `python` property to "<empty>"
+For numpy, a possible solution would be to set the `python` property to "<empty>"
+For numpy, a possible solution would be to set the `python` property to "<empty>"
+For numpy, a possible solution would be to set the `python` property to "<empty>"
+For numpy, a possible solution would be to set the `python` property to "<empty>"
+
+    https://python-poetry.org/docs/dependency-specification/#python-restricted-dependencies,
+    https://python-poetry.org/docs/dependency-specification/#using-environment-markers
+

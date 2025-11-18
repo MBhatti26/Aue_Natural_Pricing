@@ -1,0 +1,24 @@
+============================================================
+AUE NATURAL DATA PROCESSING REPORT
+============================================================
+Processing Date: 2025-11-08 12:18:45
+
+🔍 DEDUPLICATION SUMMARY:
+------------------------------
+Initial records     : 960
+Duplicates removed  : 0
+New unique products : 960
+Total thumbnails tracked  : 928
+
+📊 RECORD COUNTS:
+------------------------------
+brand_name     : 626 records
+category_name  : 4 records
+price_source   : 1 records
+retailer_name  : 386 records
+product        : 888 records
+price_history  : 960 records
+
+📁 FILES LOCATION: ./database_to_import
+🎯 STATUS: Ready for database import
+============================================================

@@ -1,0 +1,12 @@
+{
+  "timestamp": "20251118_154158",
+  "total_products": 888,
+  "matched_pairs": 552,
+  "matched_products": 316,
+  "unmatched_products": 572,
+  "coverage_pct": 35.6,
+  "perfect_pairs": 191,
+  "similar_pairs": 361,
+  "threshold_min": 70,
+  "threshold_perfect": 90
+}
