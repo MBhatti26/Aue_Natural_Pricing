@@ -202,7 +202,7 @@ def main():
     
     try:
         # Find latest unmatched products file
-        unmatched_file = find_latest_file("unmatched_products_enhanced_*.csv")
+        unmatched_file = find_latest_file("unmatched_products_*.csv")
         log.info(f"Using unmatched products file: {unmatched_file}")
         
         # Load unmatched products
@@ -219,7 +219,7 @@ def main():
         log.info(f"Found {len(new_matches_df)} new matches in unmatched products")
         
         # Find latest enhanced matches file
-        enhanced_matches_file = find_latest_file("matched_products_enhanced_*.csv")
+        enhanced_matches_file = find_latest_file("processed_matches_*.csv")
         log.info(f"Using enhanced matches file: {enhanced_matches_file}")
         
         # Merge with existing matches

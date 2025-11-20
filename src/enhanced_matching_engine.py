@@ -665,5 +665,30 @@ def main():
         embedding_manager.cleanup()
 
 
-if __name__ == "__main__":
+def main_cli():
+    """Command line interface for the enhanced matching engine."""
+    import argparse
+    
+    parser = argparse.ArgumentParser(description='Enhanced Product Matching Engine with Semantic Embeddings')
+    parser.add_argument('--input', type=str, help='Input CSV file path')
+    parser.add_argument('--output-dir', type=str, default=OUTPUT_DIR, help='Output directory for results')
+    
+    args = parser.parse_args()
+    
+    if args.output_dir:
+        global OUTPUT_DIR
+        OUTPUT_DIR = args.output_dir
+        
+    # If input file specified, copy it to expected location for processing
+    if args.input:
+        import shutil
+        os.makedirs(OUTPUT_DIR, exist_ok=True)
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        processed_input = os.path.join(OUTPUT_DIR, f"input_data_{timestamp}.csv")
+        shutil.copy(args.input, processed_input)
+        print(f"Input file copied to: {processed_input}")
+    
     main()
+
+if __name__ == "__main__":
+    main_cli()

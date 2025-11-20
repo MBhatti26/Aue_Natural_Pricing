@@ -1,0 +1,35 @@
+{
+  "processing_metadata": {
+    "timestamp": "2025-11-19T17:09:50.287014",
+    "engine_version": "enhanced_with_embeddings_v1",
+    "total_processing_time": "N/A"
+  },
+  "dataset_overview": {
+    "total_products": 888,
+    "matched_products": 497,
+    "unmatched_products": 499,
+    "coverage_percentage": 56.0
+  },
+  "matching_results": {
+    "total_match_pairs": 837,
+    "main_engine_pairs": 740,
+    "post_processing_pairs": 97
+  },
+  "confidence_breakdown": {
+    "HIGH": 305,
+    "MEDIUM": 313,
+    "LOW": 168,
+    "VERY_LOW": 51
+  },
+  "quality_metrics": {
+    "avg_similarity": 81.35495818399045,
+    "median_similarity": 80.9,
+    "avg_semantic_similarity": 75.26647297297298,
+    "avg_lexical_similarity": 68.25174432497013
+  },
+  "business_impact": {
+    "products_available_for_price_comparison": 497,
+    "price_comparison_pairs": 837,
+    "cross_retailer_matches": 567
+  }
+}

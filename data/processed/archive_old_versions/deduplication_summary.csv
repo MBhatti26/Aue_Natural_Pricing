@@ -1,0 +1,5 @@
+timestamp,input_file,initial_rows,new_rows,removed,seen_url_total,seen_thumbnail_total,seen_products_total,reason_new_entry
+2025-11-19T12:58:48.353161,all_search_results_20251118_164136.csv,1024,1024,0,960,992,627,1024
+2025-11-19T12:58:57.056228,all_search_results_20251118_164136.csv,1024,0,1024,960,992,627,1024
+2025-11-19T15:45:57.136039,all_search_results_20251119_131431.csv,906,332,574,1291,1315,937,332,332,161,81
+2025-11-19T17:09:04.162409,all_search_results_20251119_170836.csv,995,205,790,1494,1514,1122,455,205,182,153
