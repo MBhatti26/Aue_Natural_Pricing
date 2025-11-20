@@ -339,6 +339,47 @@ class MatchingPipeline:
         
         log.info("✅ Final report generated and clean symlinks created")
         
+    def update_powerbi_dashboards(self):
+        """Update PowerBI dashboards with latest data."""
+        log.info("📊 STEP 5: Updating PowerBI Dashboards...")
+        
+        # Check if PowerBI integration is configured
+        powerbi_enabled = os.getenv('POWERBI_ENABLED', 'false').lower() == 'true'
+        
+        if not powerbi_enabled:
+            log.info("⚠️  PowerBI integration not enabled. Set POWERBI_ENABLED=true to activate.")
+            log.info("💡 Dashboards can still be manually refreshed from ./powerbi_data/ files")
+            return
+        
+        try:
+            # Copy final files to powerbi_data directory
+            powerbi_dir = self.base_dir / "powerbi_data"
+            powerbi_dir.mkdir(exist_ok=True)
+            
+            # Copy latest results for PowerBI consumption
+            import shutil
+            shutil.copy2(self.final_matched_file, powerbi_dir / "FINAL_MATCHES.csv")
+            shutil.copy2(self.final_unmatched_file, powerbi_dir / "FINAL_UNMATCHED.csv") 
+            shutil.copy2(self.summary_file, powerbi_dir / "FINAL_SUMMARY.json")
+            
+            log.info(f"✅ Data files updated in {powerbi_dir}")
+            
+            # If PowerBI API is configured, trigger automatic refresh
+            try:
+                from powerbi_auto_update import integrate_with_pipeline
+                success = integrate_with_pipeline()
+                if success:
+                    log.info("🎉 PowerBI dashboards updated automatically!")
+                else:
+                    log.warning("⚠️  PowerBI API update failed, manual refresh required")
+            except ImportError:
+                log.info("💡 PowerBI API integration not available, files ready for manual refresh")
+            except Exception as e:
+                log.warning(f"⚠️  PowerBI auto-update error: {str(e)}")
+                
+        except Exception as e:
+            log.error(f"❌ PowerBI update failed: {str(e)}")
+            
     def print_final_summary(self):
         """Print comprehensive final summary."""
         stats = self.stats
@@ -406,6 +447,9 @@ class MatchingPipeline:
             
             # Step 4: Generate Report & Clean Symlinks
             self.generate_final_report()
+            
+            # Step 5: Auto-Update PowerBI Dashboards (if configured)
+            self.update_powerbi_dashboards()
             
             # Calculate total time
             end_time = datetime.now()

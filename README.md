@@ -11,17 +11,33 @@ Advanced product matching engine for competitive pricing analysis in the natural
 
 ## 🚀 Quick Start
 
-### Run Complete Pipeline
+### Option 1: Full Automation with Dashboard Updates
+```bash
+# Setup PowerBI credentials (one-time)
+python setup_powerbi.py
+
+# Run complete pipeline with auto-dashboard updates
+python run_complete_pipeline.py
+```
+
+### Option 2: Data Processing Only  
 ```bash
 python3 run_pipeline.py
 ```
 
-### Use Final Results
+### Access Results
+
+**Dashboards** (with auto-updates):
+- Executive summary and competitive insights
+- Real-time pricing intelligence 
+- Market positioning analytics
+
+**Data Files**:
 ```bash
-# Production files (use these)
 data/processed/FINAL_MATCHES.csv    # 934 matched product pairs
 data/processed/FINAL_UNMATCHED.csv  # 391 unmatched products  
 data/processed/FINAL_SUMMARY.json   # Complete statistics
+powerbi_data/                       # Dashboard-ready files (auto-updated)
 ```
 
 ## 🏗️ Architecture
@@ -43,7 +59,18 @@ data/processed/FINAL_SUMMARY.json   # Complete statistics
 
 ## 🔧 Technology Stack
 - **Python 3.8+** with pandas, scikit-learn
-- **Sentence-BERT** for semantic embeddings  
+- **Sentence-BERT** for semantic embeddings
+- **PowerBI Integration** for automatic dashboard updates
+- **REST API** for real-time dashboard refresh
+
+## 📈 Automatic Dashboard Updates
+
+When you run the pipeline, dashboards update automatically on the front-end:
+- ✅ **No manual refresh needed**
+- ✅ **Real-time competitive intelligence** 
+- ✅ **Stakeholder-ready visualizations**
+
+See [DASHBOARD_AUTOMATION.md](DASHBOARD_AUTOMATION.md) for setup details.  
 - **RapidFuzz** for lexical similarity
 - **Hybrid scoring** (60% lexical + 40% semantic)
 
