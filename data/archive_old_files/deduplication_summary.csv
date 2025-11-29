@@ -1,4 +1,0 @@
-timestamp,input_file,initial_rows,new_rows,removed,seen_url_total,seen_thumbnail_total,seen_products_total,reason_duplicate_url,reason_duplicate_thumbnail,reason_duplicate_product_id,reason_duplicate_text
-2025-11-13T12:37:02.713563,cleaned_products_20251113_123702.csv,960,0,960,655,2521,471,703,215,26,16
-2025-11-18T14:17:47.511199,all_search_results_20251112_163152.csv,960,16,944,671,2537,481,703,215,26,16
-2025-11-18T14:22:36.520556,all_search_results_20251112_163152.csv,960,0,960,671,2537,481,720,214,26

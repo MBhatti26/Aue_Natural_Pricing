@@ -92,6 +92,16 @@ SUBCATEGORY_KEYWORDS = {
     "mango": ["mango"],
 }
 
+RETAILER_STANDARDIZATION = {
+    "boots uk": "boots",
+    "boots.com": "boots",
+    "boots": "boots",
+    "amazon uk": "amazon",
+    "amazon.co.uk": "amazon",
+    "amazon": "amazon",
+    # Add more mappings as needed
+}
+
 
 # ==============================
 # EMBEDDING UTILITIES
@@ -362,6 +372,46 @@ def load_product_frame(engine):
     return df
 
 
+def standardize_retailer_name(name: str) -> str:
+    """Map retailer names to a standard form after normalization."""
+    norm = normalize_text(name)
+    return RETAILER_STANDARDIZATION.get(norm, norm)
+
+
+def parse_multipack_size(size_value, size_unit, product_name):
+    """
+    Parse multipack or variant size from product_name if possible.
+    Examples:
+        '3 x 50 ml' -> 150 ml
+        '2-pack body butter' -> 2 * size_value
+        'Value size 500 ml + 200 ml' -> 700 ml
+    """
+    # Try to extract patterns like '3 x 50 ml'
+    match = re.search(r"(\d+)\s*[xX]\s*(\d+(?:\.\d+)?)\s*(ml|g|capsules|tablet|l)", str(product_name))
+    if match:
+        count = int(match.group(1))
+        single_size = float(match.group(2))
+        unit = match.group(3)
+        return count * single_size, unit
+    # Try to extract patterns like '500 ml + 200 ml'
+    matches = re.findall(r"(\d+(?:\.\d+)?)\s*(ml|g|capsules|tablet|l)", str(product_name))
+    if matches and len(matches) > 1:
+        total = sum(float(m[0]) for m in matches)
+        unit = matches[0][1]
+        return total, unit
+    # If '2-pack' and size_value is present
+    match = re.search(r"(\d+)[-\s]*pack", str(product_name).lower())
+    if match and size_value:
+        count = int(match.group(1))
+        try:
+            single_size = float(size_value) / count
+            return float(size_value), size_unit
+        except Exception:
+            pass
+    # Default: return original
+    return size_value, size_unit
+
+
 def prepare_matching_frame(df: pd.DataFrame) -> pd.DataFrame:
     """
     Prepare normalized columns for matching.
@@ -373,7 +423,23 @@ def prepare_matching_frame(df: pd.DataFrame) -> pd.DataFrame:
     df["product_clean"] = df["product_name"].apply(normalize_text)
     df["brand_clean"] = df["brand_name"].apply(normalize_text)
     df["category_clean"] = df["category_name"].apply(normalize_text)
-    df["retailer_clean"] = df["retailer_name"].apply(normalize_text)
+    df["retailer_clean"] = df["retailer_name"].apply(lambda x: standardize_retailer_name(x))
+
+    # Parse and normalize multipack/variant sizes
+    df[["size_value_norm", "size_unit_norm"]] = df.apply(
+        lambda row: pd.Series(parse_multipack_size(row["size_value"], row["size_unit"], row["product_name"])), axis=1
+    )
+
+    # Drop or flag incomplete records (missing price, title, or normalized size)
+    incomplete_mask = (
+        df["price"].isnull() |
+        df["product_name"].isnull() |
+        df["size_value_norm"].isnull() |
+        (df["size_value_norm"] == "") |
+        (df["size_unit_norm"] == "")
+    )
+    df["incomplete_record"] = incomplete_mask
+    df = df[~incomplete_mask].copy()
 
     # Deduplicate exact duplicates on relevant fields
     df = df.drop_duplicates(
@@ -383,8 +449,8 @@ def prepare_matching_frame(df: pd.DataFrame) -> pd.DataFrame:
             "product_clean",
             "brand_clean",
             "category_clean",
-            "size_value",
-            "size_unit",
+            "size_value_norm",
+            "size_unit_norm",
         ]
     ).reset_index(drop=True)
 
@@ -523,115 +589,25 @@ def compute_unmatched(df_products: pd.DataFrame, matches_df: pd.DataFrame) -> pd
 
 
 def save_outputs_enhanced(df_raw: pd.DataFrame, matches_df: pd.DataFrame):
-    """Save enhanced matching outputs with additional semantic similarity columns."""
+    """Save only final matched and unmatched outputs, no timestamped or summary files."""
     os.makedirs(OUTPUT_DIR, exist_ok=True)
-    ts = datetime.now().strftime("%Y%m%d_%H%M%S")
+    matched_path = os.path.join(OUTPUT_DIR, "processed_matches.csv")
+    unmatched_path = os.path.join(OUTPUT_DIR, "unmatched_products.csv")
 
     if matches_df.empty:
         unmatched_df = compute_unmatched(df_raw, matches_df)
-        unmatched_path = os.path.join(OUTPUT_DIR, f"unmatched_products_{ts}.csv")
         unmatched_df.to_csv(unmatched_path, index=False)
         log.info("Saved unmatched products to %s (no matches found).", unmatched_path)
-
-        summary = {
-            "processing_metadata": {
-                "timestamp": datetime.now().isoformat(),
-                "engine_version": "enhanced_with_embeddings_v1",
-                "total_processing_time": "N/A"
-            },
-            "dataset_overview": {
-                "total_products": int(df_raw["product_id"].nunique()),
-                "matched_products": 0,
-                "unmatched_products": int(len(unmatched_df)),
-                "coverage_percentage": 0.0
-            },
-            "matching_results": {
-                "total_pairs": 0,
-                "perfect_matches": 0,
-                "similar_matches": 0
-            },
-            "technical_details": {
-                "embedding_model": EMBEDDING_MODEL,
-                "lexical_weight": LEXICAL_WEIGHT,
-                "semantic_weight": SEMANTIC_WEIGHT,
-                "similarity_thresholds": {
-                    "minimum": MIN_SIMILARITY,
-                    "perfect": PERFECT_THRESHOLD
-                }
-            }
-        }
-        summary_path = os.path.join(OUTPUT_DIR, f"processing_summary_{ts}.json")
-        with open(summary_path, "w") as f:
-            json.dump(summary, f, indent=2)
-        log.info("Saved matching summary to %s.", summary_path)
+        # No matched file if none found
         return
 
     # All matched pairs (main output)
-    matched_path = os.path.join(OUTPUT_DIR, f"processed_matches_{ts}.csv")
     matches_df.to_csv(matched_path, index=False)
-
-    # Unmatched products  
+    # Unmatched products
     unmatched_df = compute_unmatched(df_raw, matches_df)
-    unmatched_path = os.path.join(OUTPUT_DIR, f"unmatched_products_{ts}.csv")
     unmatched_df.to_csv(unmatched_path, index=False)
-
-    # Calculate stats for summary (but don't save redundant files)
-    perfect_df = matches_df[matches_df["similarity"] >= PERFECT_THRESHOLD].copy()
-    similar_df = matches_df[(matches_df["similarity"] >= MIN_SIMILARITY) &
-                            (matches_df["similarity"] < PERFECT_THRESHOLD)].copy()
-
-    # Enhanced summary JSON with semantic similarity statistics
-    matched_ids = set(matches_df["product_1_id"]) | set(matches_df["product_2_id"])
-    total_products = int(df_raw["product_id"].nunique())
-    matched_products = int(len(matched_ids))
-    unmatched_products = int(len(unmatched_df))
-    coverage = (matched_products / total_products) * 100 if total_products > 0 else 0.0
-
-    # Compute semantic similarity statistics
-    semantic_stats = {
-        "avg_semantic_similarity": float(matches_df["semantic_similarity"].mean()),
-        "avg_lexical_similarity": float(matches_df["lexical_similarity"].mean()),
-        "avg_hybrid_similarity": float(matches_df["hybrid_name_similarity"].mean()),
-        "semantic_high_matches": int(len(matches_df[matches_df["semantic_similarity"] >= 80])),
-        "lexical_high_matches": int(len(matches_df[matches_df["lexical_similarity"] >= 80])),
-    }
-
-    summary = {
-        "processing_metadata": {
-            "timestamp": datetime.now().isoformat(),
-            "engine_version": "enhanced_with_embeddings_v1",
-            "total_processing_time": "N/A"
-        },
-        "dataset_overview": {
-            "total_products": total_products,
-            "matched_products": matched_products,
-            "unmatched_products": unmatched_products,
-            "coverage_percentage": round(coverage, 1)
-        },
-        "matching_results": {
-            "total_pairs": int(len(matches_df)),
-            "perfect_matches": int(len(perfect_df)),
-            "similar_matches": int(len(similar_df))
-        },
-        "technical_details": {
-            "embedding_model": EMBEDDING_MODEL,
-            "lexical_weight": LEXICAL_WEIGHT,
-            "semantic_weight": SEMANTIC_WEIGHT,
-            "similarity_thresholds": {
-                "minimum": MIN_SIMILARITY,
-                "perfect": PERFECT_THRESHOLD
-            }
-        },
-        "semantic_analysis": semantic_stats
-    }
-    summary_path = os.path.join(OUTPUT_DIR, f"processing_summary_{ts}.json")
-    with open(summary_path, "w") as f:
-        json.dump(summary, f, indent=2)
-
-    log.info("Saved enhanced matching outputs:")
-    log.info("  Processed matches -> %s", matched_path)
-    log.info("  Unmatched products -> %s", unmatched_path)
-    log.info("  Processing summary -> %s", summary_path)
+    log.info("Saved matched products to %s.", matched_path)
+    log.info("Saved unmatched products to %s.", unmatched_path)
 
 
 def main():
@@ -666,29 +642,40 @@ def main():
 
 
 def main_cli():
+    global OUTPUT_DIR
     """Command line interface for the enhanced matching engine."""
     import argparse
-    
     parser = argparse.ArgumentParser(description='Enhanced Product Matching Engine with Semantic Embeddings')
     parser.add_argument('--input', type=str, help='Input CSV file path')
     parser.add_argument('--output-dir', type=str, default=OUTPUT_DIR, help='Output directory for results')
-    
+    parser.add_argument('--final-matches-csv', type=str, help='Path to FINAL_MATCHES.csv to update with new results')
     args = parser.parse_args()
-    
+
     if args.output_dir:
-        global OUTPUT_DIR
         OUTPUT_DIR = args.output_dir
-        
     # If input file specified, copy it to expected location for processing
     if args.input:
         import shutil
         os.makedirs(OUTPUT_DIR, exist_ok=True)
-        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-        processed_input = os.path.join(OUTPUT_DIR, f"input_data_{timestamp}.csv")
+        processed_input = os.path.join(OUTPUT_DIR, "input_data.csv")
         shutil.copy(args.input, processed_input)
         print(f"Input file copied to: {processed_input}")
-    
+    # Run main matching
     main()
+    # After main, update FINAL_MATCHES.csv if requested
+    if args.final_matches_csv:
+        matched_path = os.path.join(OUTPUT_DIR, "processed_matches.csv")
+        if os.path.exists(matched_path):
+            df_new = pd.read_csv(matched_path)
+            if os.path.exists(args.final_matches_csv):
+                df_final = pd.read_csv(args.final_matches_csv)
+                df_all = pd.concat([df_final, df_new], ignore_index=True).drop_duplicates()
+            else:
+                df_all = df_new
+            df_all.to_csv(args.final_matches_csv, index=False)
+            print(f"FINAL_MATCHES.csv updated with {len(df_all)} total matches.")
+        else:
+            print("No processed matches file found to update FINAL_MATCHES.csv.")
 
 if __name__ == "__main__":
     main_cli()

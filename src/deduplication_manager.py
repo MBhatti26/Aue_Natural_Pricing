@@ -67,7 +67,9 @@ class DeduplicationManager:
         return set()
 
     def _save_state_set(self, path: str, key: str, values: set):
-        data = {key: sorted(list(values)), "last_updated": datetime.now().isoformat(), "total_count": len(values)}
+        # Convert all values to strings before sorting to avoid TypeError
+        str_values = [str(v) for v in values]
+        data = {key: sorted(str_values), "last_updated": datetime.now().isoformat(), "total_count": len(values)}
         with open(path, "w") as f:
             json.dump(data, f, indent=2)
 
