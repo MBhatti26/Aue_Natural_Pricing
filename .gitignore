@@ -1,5 +1,6 @@
 .env
 venv/
+.venv/
 __pycache__/
 *.pyc
 *.pyo
@@ -9,3 +10,21 @@ __pycache__/
 .coverage
 .pytest_cache/
 .DS_Store
+
+# Backup files
+*.bak
+
+# Large data files
+data/raw/*.csv
+data/processed/*.csv
+data/processed/*.pkl
+data/processed/seen_*.json
+
+# PowerBI data (regenerated)
+powerbi_data/*.csv
+
+# Logs
+logs/*.log
+
+# Cache files
+*.cache
