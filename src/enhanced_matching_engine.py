@@ -356,6 +356,7 @@ def load_product_frame(engine):
             s.price,
             s.currency,
             s.date_collected,
+            s.date_key,
             r.retailer_name
         FROM {SCHEMA}.product p
         LEFT JOIN {SCHEMA}.brand b
