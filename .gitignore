@@ -23,6 +23,14 @@ data/processed/seen_*.json
 # PowerBI data (regenerated)
 powerbi_data/*.csv
 
+# Virtual environments (both conventions)
+venv/
+.venv/
+data/processed/seen_*.json
+
+# PowerBI data (regenerated)
+powerbi_data/*.csv
+
 # Logs
 logs/*.log
 

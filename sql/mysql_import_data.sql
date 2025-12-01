@@ -8,6 +8,16 @@ USE aue_natural_pricing;
 -- Disable foreign key checks temporarily to avoid insertion order issues
 SET FOREIGN_KEY_CHECKS = 0;
 
+-- Import date_dim data (must be imported before price_history due to foreign key)
+LOAD DATA LOCAL INFILE './database_to_import/date_dim.csv'
+INTO TABLE date_dim
+FIELDS TERMINATED BY ',' 
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 LINES
+(date_key, full_date, year, quarter, month, month_name, week, 
+ day_of_month, day_of_week, day_name, is_weekend, year_month, year_quarter);
+
 -- Import pricing_source data (this table has preset data, but can be extended)
 -- Note: pricing_source is already populated by schema.sql, but you can add more sources here
 
@@ -51,16 +61,17 @@ SET
     size_value = NULLIF(@size_value, ''),
     size_unit = NULLIF(@size_unit, '');
 
--- Import price_history data (including url and thumbnail columns)
+-- Import price_history data (including url, thumbnail, and date_key columns)
 LOAD DATA LOCAL INFILE './database_to_import/price_history.csv'
 INTO TABLE price_history
 FIELDS TERMINATED BY ',' 
 ENCLOSED BY '"'
 LINES TERMINATED BY '\n'
 IGNORE 1 LINES
-(price_id, product_id, retailer_id, price, @discount, currency, date_collected, @url, @thumbnail)
+(price_id, product_id, retailer_id, price, @discount, currency, date_collected, @date_key, @url, @thumbnail)
 SET 
     discount = NULLIF(@discount, ''),
+    date_key = NULLIF(@date_key, ''),
     url = NULLIF(@url, ''),
     thumbnail = NULLIF(@thumbnail, '');
 
@@ -71,6 +82,9 @@ SET FOREIGN_KEY_CHECKS = 1;
 SELECT 'Data Import Complete' as Status;
 
 -- Show record counts for verification
+SELECT 
+    'date_dim' as table_name, COUNT(*) as record_count FROM date_dim
+UNION ALL
 SELECT 
     'brand_name' as table_name, COUNT(*) as record_count FROM brand_name
 UNION ALL

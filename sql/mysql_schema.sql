@@ -12,6 +12,24 @@ CREATE TABLE pricing_source (
     region VARCHAR(10) NOT NULL
 );
 
+-- Create date_dim table (date dimension for time-series analysis)
+CREATE TABLE date_dim (
+    date_key INT PRIMARY KEY,                    -- Format: YYYYMMDD (e.g., 20251108)
+    full_date DATE NOT NULL,                     -- Actual date
+    year INT NOT NULL,                           -- 2025
+    quarter INT NOT NULL,                        -- 1, 2, 3, 4
+    month INT NOT NULL,                          -- 1-12
+    month_name VARCHAR(20) NOT NULL,             -- January, February, etc.
+    week INT NOT NULL,                           -- Week of year (1-53)
+    day_of_month INT NOT NULL,                   -- 1-31
+    day_of_week INT NOT NULL,                    -- 1-7 (Monday = 1, Sunday = 7)
+    day_name VARCHAR(20) NOT NULL,               -- Monday, Tuesday, etc.
+    is_weekend TINYINT(1) NOT NULL,              -- 1 = weekend, 0 = weekday
+    year_month VARCHAR(7) NOT NULL,              -- Format: 2025-01
+    year_quarter VARCHAR(7) NOT NULL,            -- Format: 2025-Q1
+    CONSTRAINT UQ_date_dim_date UNIQUE (full_date)
+);
+
 -- Create brand_name table
 CREATE TABLE brand_name (
     brand_id VARCHAR(20) PRIMARY KEY,
@@ -53,10 +71,12 @@ CREATE TABLE price_history (
     discount DECIMAL(10,2) NULL,
     currency CHAR(3) NOT NULL DEFAULT 'GBP',
     date_collected VARCHAR(20) NOT NULL,
+    date_key INT NULL,  -- Links to date_dim for time-series analysis
     url TEXT NULL,
     thumbnail TEXT NULL,
     FOREIGN KEY (product_id) REFERENCES product(product_id),
-    FOREIGN KEY (retailer_id) REFERENCES retailer_name(retailer_id)
+    FOREIGN KEY (retailer_id) REFERENCES retailer_name(retailer_id),
+    FOREIGN KEY (date_key) REFERENCES date_dim(date_key)
 );
 
 -- Create indexes for better performance
@@ -65,6 +85,7 @@ CREATE INDEX idx_product_category ON product(category_id);
 CREATE INDEX idx_price_history_product ON price_history(product_id);
 CREATE INDEX idx_price_history_retailer ON price_history(retailer_id);
 CREATE INDEX idx_price_history_date ON price_history(date_collected);
+CREATE INDEX idx_price_history_date_key ON price_history(date_key);  -- For time-series queries
 
 -- Insert initial pricing source data
 INSERT INTO pricing_source (source_id, source_name, region) VALUES 
