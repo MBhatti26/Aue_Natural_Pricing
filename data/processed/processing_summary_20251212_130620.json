@@ -1,0 +1,24 @@
+{
+  "processing_metadata": {
+    "timestamp": "2025-12-12T13:07:08.534402",
+    "engine_version": "enhanced_with_embeddings_v1",
+    "input_file": "data/processed/cleaned_data.csv"
+  },
+  "dataset_overview": {
+    "total_products": 1014,
+    "matched_products": 385,
+    "unmatched_products": 629,
+    "coverage_percentage": 38.0
+  },
+  "matching_results": {
+    "total_match_pairs": 571,
+    "main_engine_pairs": 571,
+    "post_processing_pairs": 0
+  },
+  "quality_metrics": {
+    "avg_similarity": 79.17090101626208,
+    "median_similarity": 75.96873474121094,
+    "perfect_matches": 78,
+    "high_quality_matches": 171
+  }
+}

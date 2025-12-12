@@ -137,12 +137,18 @@ def clean_raw_data(input_file, output_file="cleaned_products.csv"):
 
     # --- Export ---
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    # Ensure output goes to data/processed/intermediate directory
-    os.makedirs("data/processed/intermediate", exist_ok=True)
-    filename = os.path.basename(output_file.replace('.csv', ''))
-    output_path = f"data/processed/intermediate/{filename}_{timestamp}.csv"
-    df.to_csv(output_path, index=False)
-    logger.info(f"✅ Cleaned data saved to: {output_path}")
+    
+    # Save timestamped archive copy
+    os.makedirs("data/processed/archive", exist_ok=True)
+    archive_path = f"data/processed/archive/cleaned_{timestamp}.csv"
+    df.to_csv(archive_path, index=False)
+    logger.info(f"📦 Archived to: {archive_path}")
+    
+    # Save master file for matcher to use (NO timestamp)
+    os.makedirs("data/processed", exist_ok=True)
+    master_path = "data/processed/cleaned_data.csv"
+    df.to_csv(master_path, index=False)
+    logger.info(f"✅ Cleaned data saved to: {master_path}")
 
     # --- Summary stats ---
     logger.info("📊 Cleaning Summary:")
@@ -156,5 +162,22 @@ def clean_raw_data(input_file, output_file="cleaned_products.csv"):
 # === EXECUTION ===
 if __name__ == "__main__":
     import sys
-    input_file = sys.argv[1] if len(sys.argv) > 1 else "raw_products.csv"
+    from pathlib import Path
+    
+    if len(sys.argv) > 1:
+        # Use provided file
+        input_file = sys.argv[1]
+    else:
+        # Auto-find latest raw file
+        raw_dir = Path("data/raw")
+        raw_files = list(raw_dir.glob("all_search_results_*.csv"))
+        if not raw_files:
+            logger.error("❌ No raw data files found in data/raw/")
+            logger.info("💡 Run: python src/oxylabs_googleshopping_script.py first")
+            sys.exit(1)
+        
+        # Get the latest file
+        input_file = str(max(raw_files, key=lambda p: p.stat().st_mtime))
+        logger.info(f"📂 Auto-detected latest raw file: {input_file}")
+    
     clean_raw_data(input_file)

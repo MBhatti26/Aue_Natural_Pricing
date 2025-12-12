@@ -284,17 +284,31 @@ class FileBasedMatcher:
     def save_results(self, matches, unmatched_products, original_df, input_file=None):
         """Save the matching results to CSV files."""
         
-        # Save matches
+        # Save matches (both timestamped archive and master file)
         matches_df = pd.DataFrame(matches)
+        
+        # Timestamped archive
         matches_file = self.output_dir / f"processed_matches_{self.timestamp}.csv"
         matches_df.to_csv(matches_file, index=False)
         log.info(f"Saved {len(matches)} matches to {matches_file}")
         
-        # Save unmatched products
+        # Master file (no timestamp - for warehouse loading)
+        master_matches_file = self.output_dir / "processed_matches.csv"
+        matches_df.to_csv(master_matches_file, index=False)
+        log.info(f"Updated master matches file: {master_matches_file}")
+        
+        # Save unmatched products (both timestamped archive and master file)
         unmatched_df = pd.DataFrame(unmatched_products)
+        
+        # Timestamped archive
         unmatched_file = self.output_dir / f"unmatched_products_{self.timestamp}.csv"
         unmatched_df.to_csv(unmatched_file, index=False)
         log.info(f"Saved {len(unmatched_products)} unmatched products to {unmatched_file}")
+        
+        # Master file (no timestamp - for warehouse loading)
+        master_unmatched_file = self.output_dir / "unmatched_products.csv"
+        unmatched_df.to_csv(master_unmatched_file, index=False)
+        log.info(f"Updated master unmatched file: {master_unmatched_file}")
         
         # Generate summary
         total_products = len(original_df)
@@ -349,10 +363,21 @@ class FileBasedMatcher:
 
 def main():
     parser = argparse.ArgumentParser(description='File-Based Enhanced Product Matching Engine')
-    parser.add_argument('--input', type=str, required=True, help='Input CSV file path')
+    parser.add_argument('--input', type=str, default=None, help='Input CSV file path (optional - auto-detects if not provided)')
     parser.add_argument('--output-dir', type=str, default='data/processed', help='Output directory')
     
     args = parser.parse_args()
+    
+    # Auto-detect input file if not provided
+    if args.input is None:
+        default_input = "data/processed/cleaned_data.csv"
+        if os.path.exists(default_input):
+            args.input = default_input
+            log.info(f"📂 Auto-detected input file: {args.input}")
+        else:
+            log.error(f"❌ No input file found: {default_input}")
+            log.info("💡 Run: python src/cleandata_script.py first")
+            sys.exit(1)
     
     if not os.path.exists(args.input):
         print(f"Error: Input file not found: {args.input}")
@@ -361,10 +386,10 @@ def main():
     matcher = FileBasedMatcher(args.output_dir)
     results = matcher.run(args.input)
     
-    print(f"Results saved:")
-    print(f"  Matches: {results['matches_file']}")
-    print(f"  Unmatched: {results['unmatched_file']}")
-    print(f"  Summary: {results['summary_file']}")
+    print(f"\n✅ Results saved:")
+    print(f"  📊 Matches: {results['matches_file']}")
+    print(f"  ⚠️  Unmatched: {results['unmatched_file']}")
+    print(f"  📋 Summary: {results['summary_file']}")
 
 if __name__ == "__main__":
     main()
