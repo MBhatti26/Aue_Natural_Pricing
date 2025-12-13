@@ -39,7 +39,9 @@ MATCHED_COLUMNS = [
     'category',
     # Similarity Scores (for match quality analysis)
     'similarity', 'hybrid_name_similarity', 'lexical_similarity',
-    'semantic_similarity', 'brand_similarity', 'size_similarity'
+    'semantic_similarity', 'brand_similarity', 'size_similarity',
+    # Match Metadata (for time-series analysis)
+    'match_source', 'processing_date', 'engine_version', 'confidence_tier', 'match_rank'
 ]
 
 UNMATCHED_COLUMNS = [

@@ -24,8 +24,6 @@ CREATE TABLE aue.matched_products (
     size_unit_1 TEXT,
     price_1 NUMERIC(12,2),
     currency_1 TEXT,
-    date_collected_1 TIMESTAMP,
-    date_key_1 INTEGER,
     retailer_1 TEXT,
     
     -- Product 2 (Matched Retailer Product)
@@ -36,8 +34,6 @@ CREATE TABLE aue.matched_products (
     size_unit_2 TEXT,
     price_2 NUMERIC(12,2),
     currency_2 TEXT,
-    date_collected_2 TIMESTAMP,
-    date_key_2 INTEGER,
     retailer_2 TEXT,
     
     -- Common Attributes
@@ -51,7 +47,14 @@ CREATE TABLE aue.matched_products (
     brand_similarity NUMERIC(5,2),
     size_similarity NUMERIC(5,2),
     
-    -- Metadata
+    -- Match Metadata (from CSV)
+    match_source TEXT,
+    processing_date TIMESTAMP,
+    engine_version TEXT,
+    confidence_tier TEXT,
+    match_rank INTEGER,
+    
+    -- Warehouse Metadata
     import_ts TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
 
@@ -59,8 +62,7 @@ CREATE TABLE aue.matched_products (
 CREATE INDEX idx_matched_product_1_id ON aue.matched_products(product_1_id);
 CREATE INDEX idx_matched_product_2_id ON aue.matched_products(product_2_id);
 CREATE INDEX idx_matched_category ON aue.matched_products(category);
-CREATE INDEX idx_matched_date_1 ON aue.matched_products(date_key_1);
-CREATE INDEX idx_matched_date_2 ON aue.matched_products(date_key_2);
+CREATE INDEX idx_matched_processing_date ON aue.matched_products(processing_date);
 CREATE INDEX idx_matched_similarity ON aue.matched_products(similarity);
 
 COMMENT ON TABLE aue.matched_products IS 'Products successfully matched between Auê Natural catalog and retailer listings';
@@ -148,7 +150,6 @@ SELECT
     size_unit,
     price,
     currency,
-    date_key,
     retailer_name AS retailer,
     NULL AS similarity,
     import_ts
@@ -169,7 +170,7 @@ SELECT
     (price_2 - price_1) AS price_diff,
     ROUND(((price_2 - price_1) / NULLIF(price_1, 0) * 100)::NUMERIC, 2) AS price_diff_pct,
     similarity,
-    date_key_1
+    processing_date
 FROM aue.matched_products
 WHERE price_1 IS NOT NULL AND price_2 IS NOT NULL
 ORDER BY ABS((price_2 - price_1) / NULLIF(price_1, 0) * 100) DESC;
